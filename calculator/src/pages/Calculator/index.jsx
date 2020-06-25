@@ -15,10 +15,11 @@ import {
   BottomButtons,
   EqualButton,
   Button,
-  
 } from "./styles";
 import { FiMoon, FiSun } from "react-icons/fi";
 import { FaPlus, FaMinus, FaTimes, FaDivide, FaEquals } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 import NumberKey from "../../components/NumberKey/index.jsx";
 import ActionKey from "../../components/ActionKey/index.jsx";
@@ -26,14 +27,47 @@ import ActionKey from "../../components/ActionKey/index.jsx";
 export default function Calculator({ changeDarkMode }) {
   const numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1];
   const [darkMode, setDarkMode] = useState(false);
+  const [operationLine, setOperationLine] = useState("");
+  const [resultLine, setResultLine] = useState("0");
 
   const handleChangeColorTheme = () => {
     setDarkMode(!darkMode);
     changeDarkMode(!darkMode);
   };
 
-  const handleKeyClick = (keyValue) => {
-    console.log(keyValue);
+  const handleKeyClick = async (keyValue) => {
+    if (keyValue !== "clear" && keyValue !== "backspace" && keyValue !== "=") {
+      if (typeof keyValue === "number" || keyValue === ".") {
+        setOperationLine(operationLine + "" + keyValue);
+      } else {
+        setOperationLine(operationLine + " " + keyValue + " ");
+      }
+    }
+
+    switch (keyValue) {
+      case "=":
+        try {
+          let calculate = eval(operationLine);
+          setResultLine(calculate);
+        }
+        catch(err){
+          toast.error("Operação inválida!");
+        }
+        break;
+      case "clear":
+        setResultLine("0");
+        setOperationLine("");
+        break;
+      case "backspace":
+        let character = operationLine.split(" ");
+        character.splice(character.length - 1, 1);
+        setOperationLine(character.join(" "));
+        break;
+      default:
+        break;
+    }
+
+    
   };
 
   return (
@@ -48,14 +82,20 @@ export default function Calculator({ changeDarkMode }) {
         <CalculatorContainer darkMode={darkMode}>
           {/* Visor de resultado */}
           <CalculatorScreen darkMode={darkMode}>
-            <CountLine> 2 + 4 </CountLine>
-            <ResultLine> = 6</ResultLine>
+            <CountLine darkMode={darkMode}> {operationLine} </CountLine>
+            <ResultLine darkMode={darkMode}> = {resultLine}</ResultLine>
           </CalculatorScreen>
 
           {/* Botões de limpar e apagar */}
           <ClearButtons>
-            <ClearButton onClick={() => handleKeyClick("clear")}> Clear </ClearButton>
-            <ClearButton onClick={() => handleKeyClick("backspace")}> Backspace </ClearButton>
+            <ClearButton onClick={() => handleKeyClick("clear")}>
+              {" "}
+              Clear{" "}
+            </ClearButton>
+            <ClearButton onClick={() => handleKeyClick("backspace")}>
+              {" "}
+              Backspace{" "}
+            </ClearButton>
           </ClearButtons>
 
           <MiddleContent>
@@ -112,6 +152,7 @@ export default function Calculator({ changeDarkMode }) {
           </BottomButtons>
         </CalculatorContainer>
       </CalcAndSwitch>
+      <ToastContainer />
     </>
   );
 }
