@@ -1,11 +1,7 @@
-<h3 align="center"> Calculadora </h3>
-
-
-<br>
-<br> 
+<h2 align="center"> :heavy_division_sign: &nbsp; Calculadora &nbsp; :heavy_plus_sign: </h2>
 
 <p  align="center">
-  <a href="#eyes-preview" > :eyes: Preview </a> 
+  <a href="#eyes-preview" > :eyes: Preview </a> &nbsp; | &nbsp;
   <a href="#computer-tecnologias" > :computer: Tecnologias </a> 
 </p>
 
@@ -27,6 +23,9 @@
     <img src="../.github/calc-dark.jpeg" alt="Calculadora em dark mode" width="90%" />
 </p>
 
+<br>
+<br> 
+
 ## :computer: Tecnologias
 - React
 - Styled-Component
@@ -34,4 +33,4 @@
 <br>
 <br>
 
-<h4 align="center"> :heart: Por Julianne Volotão. <h4>
+<h4 align="center"> :heart: Feito por Julianne Volotão. <h4>
