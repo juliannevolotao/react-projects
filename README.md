@@ -5,8 +5,8 @@
 
 <p align="center"> 
    <a href="#key-finalidade"> :key: Finalidade </a> &nbsp; | &nbsp;
-   <a href="#open_file_folder-projetos"> :open_file_folder: Projetos </a> &nbsp;
-   <a href="#eye-preview"> :eye: Preview </a> &nbsp;
+   <a href="#open_file_folder-projetos"> :open_file_folder: Projetos </a> &nbsp; | &nbsp;
+   <a href="#eye-preview"> :eye: Preview </a>
 </p>
 
 <br>
@@ -28,8 +28,6 @@
 <br>
 
 ## :eye: Preview
-
-<p align="center" style="display: flex"> 
    
 <br>
 
